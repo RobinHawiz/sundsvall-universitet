@@ -1,0 +1,16 @@
+<div class="input-box">
+  <mat-form-field>
+    <mat-label>Välj en kolumn att sortera</mat-label>
+    <mat-select [formControl]="columnControl">
+      @for (column of columns; track column.coursePropName) {
+      <mat-option [value]="column">{{ column.tableColName }}</mat-option>
+      }
+    </mat-select>
+    @if (columnControl.hasError('required')) {
+    <mat-error>Vänligen välj en kolumn att sortera</mat-error>
+    }
+  </mat-form-field>
+  <button mat-stroked-button (click)="sortColumn()">
+    Sortera {{ this.sortDirection === "ascending" ? "stigande" : "fallande" }}
+  </button>
+</div>

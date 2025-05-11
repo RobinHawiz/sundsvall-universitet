@@ -1,0 +1,142 @@
+@use "abstract/mixins" as m;
+@use "abstract/variables" as v;
+@use "sass:map";
+@import url("https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;600;700&display=swap");
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Figtree", sans-serif;
+}
+
+h1 {
+  font-size: v.$h1-font;
+  @include m.media-query(mobile) {
+    font-size: v.$h1-mobile-font;
+  }
+}
+
+h2 {
+  font-size: v.$h2-font;
+  @include m.media-query(mobile) {
+    font-size: v.$h2-mobile-font;
+  }
+}
+
+p,
+a {
+  font-size: v.$text-font;
+  @include m.media-query(mobile) {
+    font-size: v.$text-mobile-font;
+  }
+}
+
+/* Table styling */
+
+table {
+  tr {
+    th {
+      font-size: v.$text-font;
+      @include m.media-query(mobile) {
+        font-size: v.$text-mobile-font;
+      }
+    }
+    td.mat-mdc-cell {
+      font-size: v.$text-font;
+      font-weight: 300;
+      line-height: 2.4rem;
+      @include m.media-query(mobile) {
+        font-size: v.$text-mobile-font;
+      }
+    }
+  }
+}
+
+button.mat-mdc-button-base {
+  font-size: v.$button-font;
+  font-weight: 600;
+  @include m.media-query(mobile) {
+    font-size: v.$button-mobile-font;
+  }
+}
+
+/* Filters styling */
+
+mat-form-field.mat-mdc-form-field {
+  font-size: v.$text-font;
+  font-weight: 300;
+  @include m.media-query(mobile) {
+    font-size: v.$text-mobile-font;
+  }
+  mat-label {
+    font-size: v.$text-font;
+    font-weight: 300;
+    @include m.media-query(mobile) {
+      font-size: v.$text-mobile-font;
+    }
+  }
+  .mat-mdc-form-field-subscript-wrapper {
+    font-size: v.$error-font;
+    font-weight: 300;
+    line-height: 2.4rem;
+  }
+}
+
+mat-option.mat-mdc-option {
+  font-size: v.$text-font;
+  font-weight: 300;
+  line-height: 2.4rem;
+  @include m.media-query(mobile) {
+    font-size: v.$text-mobile-font;
+  }
+}
+
+mat-select.mat-mdc-select {
+  font-size: v.$text-font;
+  font-weight: 300;
+  line-height: 2.4rem;
+  @include m.media-query(mobile) {
+    font-size: v.$text-mobile-font;
+  }
+}
+
+/* Card styling */
+
+mat-card {
+  mat-card-title.mat-mdc-card-title {
+    line-height: 2.4rem;
+  }
+  mat-card-subtitle.mat-mdc-card-subtitle {
+    font-size: v.$text-font;
+    line-height: 2.4rem;
+    @include m.media-query(mobile) {
+      font-size: v.$text-mobile-font;
+    }
+  }
+  mat-card-content {
+    @include m.media-query(mobile) {
+      font-size: v.$text-mobile-font;
+    }
+  }
+}
+
+/* Paginator styling */
+
+mat-paginator.mat-mdc-paginator {
+  font-size: v.$paginator-font;
+  @include m.media-query(mobile) {
+    font-size: v.$paginator-mobile-font;
+  }
+  mat-select .mat-mdc-select-value {
+    font-size: v.$paginator-font;
+    @include m.media-query(mobile) {
+      font-size: v.$paginator-mobile-font;
+    }
+  }
+}
+
+mat-tooltip-component .mat-mdc-tooltip-surface {
+  font-size: v.$tooltip-font;
+}

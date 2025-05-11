@@ -1,0 +1,8 @@
+<mat-form-field>
+  <mat-label>Välj ditt ämne</mat-label>
+  <mat-select [formControl]="courseSubjectControl">
+    @for (subject of subjects; track subject) {
+    <mat-option [value]="subject">{{ subject }}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>

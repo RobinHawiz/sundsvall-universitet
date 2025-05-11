@@ -1,0 +1,18 @@
+@use "abstract/mixins" as m;
+
+/* Filters styling */
+
+.input-box {
+  @include m.flex(normal, center, row, 4rem);
+  @include m.media-query(tablet) {
+    @include m.flex(normal, center, column, 0rem);
+  }
+}
+
+mat-form-field {
+  flex: 1;
+}
+
+button {
+  width: 16rem;
+}

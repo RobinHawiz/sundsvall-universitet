@@ -1,0 +1,101 @@
+<main>
+  <h1>Kurser</h1>
+  <form>
+    <div class="input-box">
+      <mat-form-field>
+        <mat-label>Sök:</mat-label>
+        <input
+          matInput
+          placeholder="Sök efter kurskod eller kursnamn"
+          (input)="onSearchTermChange()"
+          [(ngModel)]="searchTerm"
+          [ngModelOptions]="{ standalone: true }"
+        />
+      </mat-form-field>
+      <app-course-subject-selector
+        [subjects]="courseSubjects"
+        (filterBySubjectEvent)="filterBySubject($event)"
+      />
+    </div>
+    <app-course-sort-selector (sortColumnEvent)="alphabetizeBy($event)" />
+  </form>
+  @if(didFetchFail()){
+  <p>Något gick fel.</p>
+  } @else if(courses()?.length === 0){
+  <p>Finns inga kurser att visa.</p>
+  } @else if (courses() === undefined) {
+  <p>Laddar...</p>
+  } @else {
+  <p>
+    Listar {{ filteredCourses().length }} kurser av totalt
+    {{ unmodifiedCourses.length }}
+  </p>
+  @if(isScreenWidth1110px()) { @for (course of displayedCourses(); track
+  course.courseCode) {
+  <article>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title
+          ><h2>{{ course.courseName }}</h2></mat-card-title
+        >
+        <mat-card-subtitle>{{ course.courseCode }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p><span class="bold">Poäng: </span>{{ course.points }}</p>
+        <p><span class="bold">Ämne: </span>{{ course.subject }}</p>
+        <a href="{{ course.syllabus }}">Kursplan</a>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-flat-button>Lägg till</button>
+      </mat-card-actions>
+    </mat-card>
+  </article>
+  } } @else {
+  <table mat-table [dataSource]="displayedCourses()" class="mat-elevation-z8">
+    <ng-container matColumnDef="courseCode">
+      <th mat-header-cell *matHeaderCellDef>Kod</th>
+      <td mat-cell *matCellDef="let element">{{ element.courseCode }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="courseName">
+      <th mat-header-cell *matHeaderCellDef>Kursnamn</th>
+      <td mat-cell *matCellDef="let element">{{ element.courseName }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="points">
+      <th mat-header-cell *matHeaderCellDef>Poäng</th>
+      <td mat-cell *matCellDef="let element">{{ element.points }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="subject">
+      <th mat-header-cell *matHeaderCellDef>Ämne</th>
+      <td mat-cell *matCellDef="let element">{{ element.subject }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="syllabus">
+      <th mat-header-cell *matHeaderCellDef>Kursplan</th>
+      <td mat-cell *matCellDef="let element">
+        <a href="{{ element.syllabus }}">Kursplan</a>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="add">
+      <th mat-header-cell *matHeaderCellDef>Lägg till</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-flat-button>Lägg till</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  } }
+  <mat-paginator
+    (page)="handlePageEvent($event)"
+    [length]="filteredCourses().length"
+    [pageIndex]="pageIndex()"
+    [pageSizeOptions]="[10, 50, 100]"
+    aria-label="Välj sida"
+  />
+</main>

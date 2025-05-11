@@ -1,0 +1,22 @@
+// Font-sizes
+
+$h1-font: 3.4rem;
+$h2-font: 2.5rem;
+$button-font: 1.4rem;
+$text-font: 1.8rem;
+$error-font: 1.2rem;
+$paginator-font: 1.4rem;
+$tooltip-font: 1rem;
+
+$h1-mobile-font: 2.4rem;
+$h2-mobile-font: 2rem;
+$button-mobile-font: 1.2rem;
+$text-mobile-font: 1.6rem;
+$paginator-mobile-font: 1.2rem;
+
+// Breakpoints
+
+$breakpoints: (
+  tablet: 1110px,
+  mobile: 480px,
+);
