@@ -22,7 +22,10 @@
       </mat-card-actions>
     </mat-card>
   </article>
-  } } @else {
+  }
+  <p>Antal kurser: {{ displayedCourses().length }} stycken.</p>
+  <p>Totalt antal poäng: {{ totalCoursePoints() }} hp.</p>
+  } @else {
   <table mat-table [dataSource]="displayedCourses()" class="mat-elevation-z8">
     <ng-container matColumnDef="courseCode">
       <th mat-header-cell *matHeaderCellDef>Kod</th>
@@ -62,5 +65,7 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 
+  <p>Antal kurser: {{ displayedCourses().length }} stycken.</p>
+  <p>Totalt antal poäng: {{ totalCoursePoints() }} hp.</p>
   } }
 </main>

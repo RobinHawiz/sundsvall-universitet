@@ -36,6 +36,14 @@ export class MittRamschemaComponent {
     });
   }
 
+  totalCoursePoints(): number {
+    let output = 0;
+    this.displayedCourses().forEach((course) => {
+      output += course.points;
+    });
+    return output;
+  }
+
   removeCourse(course: Course): void {
     this.localStorageService.removeCourse(course);
     this.localStorageService.saveToLocalStorage();
