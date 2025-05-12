@@ -12,7 +12,7 @@ import { material } from '@core/material';
 })
 export class MittRamschemaComponent {
   private breakpointObserver = inject(BreakpointObserver);
-  displayedCourses = signal<Array<Course>>([]);
+  displayedCourses;
   displayedColumns = [
     'courseCode',
     'courseName',
@@ -24,13 +24,9 @@ export class MittRamschemaComponent {
   isScreenWidth1110px = signal(false);
   breakPoint1110px = '(max-width: 1110px)';
 
-  private setDisplayedCourses(): void {
-    this.displayedCourses.set(this.localStorageService.getCourses());
-  }
-
   constructor(public localStorageService: LocalStorageService) {
     this.localStorageService.loadFromLocalStorage();
-    this.setDisplayedCourses();
+    this.displayedCourses = this.localStorageService.getCourses();
   }
 
   ngOnInit(): void {
@@ -43,6 +39,5 @@ export class MittRamschemaComponent {
   removeCourse(course: Course): void {
     this.localStorageService.removeCourse(course);
     this.localStorageService.saveToLocalStorage();
-    this.setDisplayedCourses();
   }
 }
