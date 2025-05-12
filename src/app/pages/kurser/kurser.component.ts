@@ -2,18 +2,24 @@ import { Component, computed, inject, signal, ViewChild } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { FormsModule } from '@angular/forms';
 import { Course, SortEvent } from '@core/models/course.model';
-import { CourseService } from '@core/services/course.service';
-import { PaginatorIntlService } from '@core/services/paginator-intl.service';
-import { material } from '@core/material';
-import { CourseSortSelectorComponent } from '@core/components/course-sort-selector/course-sort-selector.component';
 import { alphabetize } from '@core/utils/sort.util';
-import { CourseSubjectSelectorComponent } from '@core/components/course-subject-selector/course-subject-selector.component';
+
 import {
   MatPaginator,
   MatPaginatorIntl,
   MatPaginatorModule,
   PageEvent,
 } from '@angular/material/paginator';
+import {
+  CourseService,
+  LocalStorageService,
+  PaginatorIntlService,
+} from '@core/services';
+import { material } from '@core/material';
+import {
+  CourseSortSelectorComponent,
+  CourseSubjectSelectorComponent,
+} from '@core/components';
 
 @Component({
   selector: 'app-kurser',
@@ -80,7 +86,12 @@ export class KurserComponent {
   breakPoint1110px = '(max-width: 1110px)';
   courseSubjects: Array<string> = [];
 
-  constructor(private courseService: CourseService) {}
+  constructor(
+    private courseService: CourseService,
+    public localStorageService: LocalStorageService
+  ) {
+    this.localStorageService.loadFromLocalStorage();
+  }
 
   private setCourseSubjects(data: Array<Course>): void {
     this.courseSubjects.push('Alla');
@@ -155,8 +166,13 @@ export class KurserComponent {
     this.courses.set(sorted);
   }
 
-  handlePageEvent(e: PageEvent) {
+  handlePageEvent(e: PageEvent): void {
     this.pageSize.set(e.pageSize);
     this.pageIndex.set(e.pageIndex);
+  }
+
+  saveCourse(course: Course): void {
+    this.localStorageService.addCourse(course);
+    this.localStorageService.saveToLocalStorage();
   }
 }

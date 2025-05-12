@@ -46,7 +46,11 @@
         <a href="{{ course.syllabus }}">Kursplan</a>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-flat-button>Lägg till</button>
+        @if (localStorageService.isCourseSaved(course)) {
+        <button mat-flat-button disabled>Lägg till</button>
+        } @else {
+        <button mat-flat-button (click)="saveCourse(course)">Lägg till</button>
+        }
       </mat-card-actions>
     </mat-card>
   </article>
@@ -82,7 +86,11 @@
     <ng-container matColumnDef="add">
       <th mat-header-cell *matHeaderCellDef>Lägg till</th>
       <td mat-cell *matCellDef="let element">
-        <button mat-flat-button>Lägg till</button>
+        @if (localStorageService.isCourseSaved(element)) {
+        <button mat-flat-button disabled>Lägg till</button>
+        } @else {
+        <button mat-flat-button (click)="saveCourse(element)">Lägg till</button>
+        }
       </td>
     </ng-container>
 
