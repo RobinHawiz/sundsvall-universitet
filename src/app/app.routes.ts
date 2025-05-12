@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { KurserComponent } from './pages/kurser/kurser.component';
+import { MittRamschemaComponent } from './pages/mitt-ramschema/mitt-ramschema.component';
 
 export const routes: Routes = [
   {
@@ -8,4 +9,5 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   { path: 'kurser', component: KurserComponent },
+  { path: 'mitt-ramschema', component: MittRamschemaComponent },
 ];

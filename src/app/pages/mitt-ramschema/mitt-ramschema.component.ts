@@ -1,0 +1,48 @@
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { Component, inject, signal } from '@angular/core';
+import { Course } from '@core/models/course.model';
+import { LocalStorageService } from '@core/services';
+import { material } from '@core/material';
+
+@Component({
+  selector: 'app-mitt-ramschema',
+  imports: [...material],
+  templateUrl: './mitt-ramschema.component.html',
+  styleUrl: './mitt-ramschema.component.scss',
+})
+export class MittRamschemaComponent {
+  private breakpointObserver = inject(BreakpointObserver);
+  displayedCourses = signal<Array<Course>>([]);
+  displayedColumns = [
+    'courseCode',
+    'courseName',
+    'points',
+    'subject',
+    'syllabus',
+    'remove',
+  ];
+  isScreenWidth1110px = signal(false);
+  breakPoint1110px = '(max-width: 1110px)';
+
+  private setDisplayedCourses(): void {
+    this.displayedCourses.set(this.localStorageService.getCourses());
+  }
+
+  constructor(public localStorageService: LocalStorageService) {
+    this.localStorageService.loadFromLocalStorage();
+    this.setDisplayedCourses();
+  }
+
+  ngOnInit(): void {
+    this.breakpointObserver.observe(this.breakPoint1110px).subscribe((x) => {
+      // Check if defined breakpoints match the screen size
+      this.isScreenWidth1110px.set(x.breakpoints[this.breakPoint1110px]);
+    });
+  }
+
+  removeCourse(course: Course): void {
+    this.localStorageService.removeCourse(course);
+    this.localStorageService.saveToLocalStorage();
+    this.setDisplayedCourses();
+  }
+}

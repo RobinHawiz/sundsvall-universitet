@@ -13,6 +13,16 @@ export class LocalStorageService {
     this.courses.push(course);
   }
 
+  removeCourse(course: Course): void {
+    const courseIndex = this.courses.findIndex(
+      (savedCourse) => savedCourse.courseCode === course.courseCode
+    );
+    // only splice array when course is found
+    if (courseIndex > -1) {
+      this.courses.splice(courseIndex, 1);
+    }
+  }
+
   getCourses(): Array<Course> {
     return this.courses;
   }
