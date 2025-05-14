@@ -67,7 +67,8 @@ table.mat-mdc-table {
 /* Card Styling */
 
 mat-card {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+  border: 0.1rem solid #6c6566;
   mat-card-header {
     margin-bottom: 1rem;
   }
@@ -76,6 +77,9 @@ mat-card {
     p:nth-child(2) {
       margin-block: 0.4rem;
     }
+  }
+  mat-card-actions {
+    padding-bottom: 1.6rem;
   }
 }
 
