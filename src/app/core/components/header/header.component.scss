@@ -5,13 +5,13 @@ header {
   margin-bottom: 2rem;
   .header-content {
     @include m.flex(normal, space-between, row);
+    flex-wrap: wrap;
     width: 90%;
     max-width: 125rem;
     padding-block: 2.5rem;
     margin: auto;
     @include m.media-query(header) {
       justify-content: center;
-      flex-wrap: wrap;
       gap: 2rem;
     }
   }
@@ -28,8 +28,13 @@ header {
   }
   nav {
     margin-block: auto;
+    margin-left: 1rem;
     ul {
       @include m.flex(normal, normal, row);
+      gap: 2rem;
+      @include m.media-query(mobile) {
+        gap: 0rem;
+      }
     }
     a {
       color: v.$nav-text-color-dark;
