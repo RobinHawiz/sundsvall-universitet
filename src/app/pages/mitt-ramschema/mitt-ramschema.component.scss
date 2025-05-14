@@ -7,12 +7,18 @@ table.mat-mdc-table {
   background-color: transparent;
 
   th.mat-mdc-header-cell {
-    border-bottom-color: rgba(255, 255, 255, 0.3);
+    border-bottom-color: rgba(0, 0, 0, 0.3);
+    @media (prefers-color-scheme: dark) {
+      border-bottom-color: rgba(255, 255, 255, 0.3);
+    }
   }
 
   td.mat-mdc-cell {
     padding-block: 1rem;
-    border-bottom-color: rgba(255, 255, 255, 0.3);
+    border-bottom-color: rgba(0, 0, 0, 0.3);
+    @media (prefers-color-scheme: dark) {
+      border-bottom-color: rgba(255, 255, 255, 0.3);
+    }
   }
 
   th.mat-column-points,
@@ -28,7 +34,8 @@ table.mat-mdc-table {
 }
 
 mat-card {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+  border: 0.1rem solid #6c6566;
   mat-card-header {
     margin-bottom: 1rem;
   }
@@ -37,5 +44,8 @@ mat-card {
     p:nth-child(2) {
       margin-block: 0.4rem;
     }
+  }
+  mat-card-actions {
+    padding-bottom: 1.6rem;
   }
 }
