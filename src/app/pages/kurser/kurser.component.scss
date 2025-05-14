@@ -1,9 +1,18 @@
 @use "abstract/mixins" as m;
 
+p {
+  padding-top: 2rem;
+  margin-bottom: 2rem;
+}
+
 /* Filters styling */
 
 form {
-  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 0.1rem solid rgba(0, 0, 0, 0.3);
+  @media (prefers-color-scheme: dark) {
+    border-bottom: 0.1rem solid rgba(255, 255, 255, 0.3);
+  }
 }
 
 .input-box {
@@ -26,12 +35,18 @@ table.mat-mdc-table {
   background-color: transparent;
 
   th.mat-mdc-header-cell {
-    border-bottom-color: rgba(255, 255, 255, 0.3);
+    border-bottom-color: rgba(0, 0, 0, 0.3);
+    @media (prefers-color-scheme: dark) {
+      border-bottom-color: rgba(255, 255, 255, 0.3);
+    }
   }
 
   td.mat-mdc-cell {
     padding-block: 1rem;
-    border-bottom-color: rgba(255, 255, 255, 0.3);
+    border-bottom-color: rgba(0, 0, 0, 0.3);
+    @media (prefers-color-scheme: dark) {
+      border-bottom-color: rgba(255, 255, 255, 0.3);
+    }
   }
 
   th.mat-column-points,
@@ -45,6 +60,8 @@ table.mat-mdc-table {
     text-align: center;
   }
 }
+
+/* Card Styling */
 
 mat-card {
   margin-bottom: 1rem;
