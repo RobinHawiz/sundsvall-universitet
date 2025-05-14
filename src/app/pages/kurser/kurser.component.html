@@ -20,11 +20,12 @@
     <app-course-sort-selector (sortColumnEvent)="alphabetizeBy($event)" />
   </form>
   @if(didFetchFail()){
-  <p>Något gick fel.</p>
+  <p>Kunde inte hämta kurser. Var vänlig och försök igen senare.</p>
   } @else if(courses()?.length === 0){
-  <p>Finns inga kurser att visa.</p>
+  <p>För tillfället finns det inga kurser att visa.</p>
   } @else if (courses() === undefined) {
-  <p>Laddar...</p>
+  <p>Hämtar kurser...</p>
+  <mat-spinner [diameter]="50"></mat-spinner>
   } @else {
   <p>
     Listar {{ filteredCourses().length }} kurser av totalt
