@@ -1,22 +1,13 @@
 <header>
   <div class="header-content">
-    <div class="logo-wrapper light">
+    <div class="logo-wrapper">
       <a
         routerLink="/hem"
         routerLinkActive="active"
         ariaCurrentWhenActive="page"
       >
-        <img
-          src="sundsvall_universitet_logga_light.svg"
-          alt="Sundsvall universitet logga"
-        />
+        <img [src]="logoSrc()" alt="Sundsvall universitet logga" />
       </a>
-    </div>
-    <div class="logo-wrapper dark">
-      <img
-        src="sundsvall_universitet_logga_dark.svg"
-        alt="Sundsvall universitet logga"
-      />
     </div>
     <nav>
       <ul>
