@@ -1,0 +1,52 @@
+@use "abstract/mixins" as m;
+
+footer {
+  .footer-content {
+    @include m.flex(center, space-between, row);
+    flex-wrap: wrap-reverse;
+    gap: 1rem;
+    width: 90%;
+    max-width: 125rem;
+    min-height: 13.5vh;
+    padding-block: 1.5rem;
+    margin-inline: auto;
+    border-top: 0.1rem solid black;
+    @media (prefers-color-scheme: dark) {
+      border-top: 0.1rem solid white;
+    }
+    @include m.media-query(header) {
+      justify-content: center;
+      gap: 3rem;
+    }
+
+    .logo-wrapper {
+      height: 9rem;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+        @media (prefers-color-scheme: dark) {
+          filter: brightness(0) saturate(100%) invert(99%) sepia(0%)
+            saturate(7500%) hue-rotate(183deg) brightness(110%) contrast(102%);
+        }
+      }
+    }
+
+    ul {
+      @include m.flex(center, normal, row);
+      gap: 3rem;
+    }
+    li {
+      img {
+        display: block;
+        width: 3rem;
+        height: 3rem;
+        @media (prefers-color-scheme: dark) {
+          filter: invert(99%) sepia(0%) saturate(7500%) hue-rotate(183deg)
+            brightness(110%) contrast(102%);
+        }
+      }
+    }
+  }
+}

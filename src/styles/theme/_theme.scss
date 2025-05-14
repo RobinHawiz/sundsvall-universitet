@@ -1,3 +1,13 @@
+@use "abstract/variables" as v;
+
 .bold {
   font-weight: 700;
+}
+
+h1,
+p {
+  color: v.$text-color-dark;
+  @media (prefers-color-scheme: dark) {
+    color: white;
+  }
 }
