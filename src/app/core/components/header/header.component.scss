@@ -1,4 +1,5 @@
 @use "abstract/mixins" as m;
+@use "abstract/variables" as v;
 
 header {
   margin-bottom: 2rem;
@@ -29,6 +30,16 @@ header {
     margin-block: auto;
     ul {
       @include m.flex(normal, normal, row);
+    }
+    a {
+      color: v.$nav-text-color-dark;
+      @media (prefers-color-scheme: dark) {
+        color: v.$nav-text-color-light;
+      }
+      &.cdk-focused,
+      &:hover {
+        box-shadow: inset 0 0 0 0.1rem v.$nav-hover-focus-border-color;
+      }
     }
   }
 }
