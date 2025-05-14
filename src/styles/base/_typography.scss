@@ -26,7 +26,8 @@ h2 {
 }
 
 p,
-a {
+a,
+a.mdc-button {
   font-size: v.$text-font;
   @include m.media-query(mobile) {
     font-size: v.$text-mobile-font;
