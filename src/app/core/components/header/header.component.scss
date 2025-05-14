@@ -8,6 +8,11 @@ header {
     max-width: 125rem;
     padding-block: 2.5rem;
     margin: auto;
+    @include m.media-query(header) {
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
   }
   .logo-wrapper {
     height: 7rem;
