@@ -1,6 +1,6 @@
 @use "abstract/mixins" as m;
 
-p {
+p.user-message {
   padding-top: 2rem;
   margin-bottom: 2rem;
 }
@@ -10,6 +10,9 @@ p {
 form {
   padding-bottom: 1rem;
   border-bottom: 0.1rem solid rgba(0, 0, 0, 0.3);
+  @include m.media-query(tablet) {
+    padding-bottom: 3rem;
+  }
   @media (prefers-color-scheme: dark) {
     border-bottom: 0.1rem solid rgba(255, 255, 255, 0.3);
   }
