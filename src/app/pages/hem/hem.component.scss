@@ -1,0 +1,99 @@
+@use "abstract/variables" as v;
+@use "abstract/mixins" as m;
+
+.hero-container {
+  position: relative;
+  .cta {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 4rem;
+    background-color: rgba($color: #000000, $alpha: 0.7);
+    @include m.media-query(tablet) {
+      @include m.flex(normal, center, column);
+      height: 100%;
+    }
+    @include m.media-query(cta) {
+      position: static;
+      padding: 2rem 0 0 0;
+      background-color: transparent;
+    }
+    h1 {
+      color: v.$cta-text-color;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      line-height: 2.2rem;
+      color: v.$cta-text-color;
+    }
+    .link-container {
+      display: inline-block;
+      a {
+        position: relative;
+        padding-right: 2rem;
+        color: v.$cta-text-color;
+        &:hover {
+          img {
+            transform: translate(30%, -50%);
+          }
+        }
+        @include m.media-query(mobile) {
+          padding-right: 1.5rem;
+        }
+      }
+      img {
+        display: block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 0;
+        width: 2rem;
+        transition: all 0.1s ease;
+        @include m.media-query(mobile) {
+          width: 1.5rem;
+        }
+      }
+    }
+    @include m.media-query(cta) {
+      @media (prefers-color-scheme: light) {
+        h1,
+        p,
+        .link-container a {
+          color: v.$text-color-dark;
+        }
+        .link-container img {
+          filter: brightness(0) saturate(100%);
+        }
+      }
+    }
+  }
+  .img-wrapper {
+    width: 100%;
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+.stats-container {
+  @include m.flex(center, space-around, row);
+  margin-top: 3rem;
+  margin-inline: 3rem;
+  @include m.media-query(mobile) {
+    margin-inline: 0;
+  }
+  p {
+    @include m.flex(center, center, column);
+    flex: 1;
+    .number {
+      color: v.$number-span-color-dark;
+      @media (prefers-color-scheme: dark) {
+        color: v.$number-span-color-light;
+      }
+    }
+  }
+}

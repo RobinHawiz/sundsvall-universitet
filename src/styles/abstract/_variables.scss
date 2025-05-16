@@ -8,19 +8,24 @@ $error-font: 1.2rem;
 $paginator-font: 1.4rem;
 $tooltip-font: 1rem;
 $copyright-font: 1.6rem;
+$number-span-font: 4rem;
 
 $h1-mobile-font: 2.4rem;
 $h2-mobile-font: 2rem;
 $button-mobile-font: 1.2rem;
 $text-mobile-font: 1.6rem;
 $paginator-mobile-font: 1.2rem;
+$number-span-mobile-font: 3rem;
 
 // Colors
 
 $text-color-dark: #1a181e;
+$cta-text-color: #ffffff;
 $nav-text-color-dark: #1a181e;
 $nav-text-color-light: #ffffff;
 $nav-hover-focus-border-color: #606584;
+$number-span-color-light: #abc7ff;
+$number-span-color-dark: #5c91ff;
 
 // Breakpoints
 
@@ -28,4 +33,5 @@ $breakpoints: (
   tablet: 1110px,
   mobile: 480px,
   header: 706px,
+  cta: 600px,
 );

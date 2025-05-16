@@ -1,0 +1,67 @@
+<main>
+  <div class="hero-container">
+    <div class="img-wrapper">
+      <picture>
+        <source
+          type="image/avif"
+          media="(max-width: 480px)"
+          srcset="
+            hero/miun@1x.avif 1x,
+            hero/miun@2x.avif 2x,
+            hero/miun@3x.avif 3x
+          "
+        />
+        <source
+          type="image/webp"
+          media="(max-width: 480px)"
+          srcset="
+            hero/miun@1x.webp 1x,
+            hero/miun@2x.webp 2x,
+            hero/miun@3x.webp 3x
+          "
+        />
+        <source
+          type="image/jpg"
+          media="(max-width: 480px)"
+          srcset="hero/miun@1x.jpg 1x, hero/miun@2x.jpg 2x, hero/miun@3x.jpg 3x"
+        />
+        <source type="image/avif" srcset="hero/miun_w1250@1x.avif 1x" />
+        <source type="image/webp" srcset="hero/miun_w1250@1x.webp 1x" />
+        <source type="image/jpg" srcset="hero/miun_w1250@1x.jpg 1x" />
+        <img
+          src="hero/miun_w1250@1x.jpg"
+          alt="Två programmerare med varsin laptop som studerar"
+        />
+      </picture>
+    </div>
+    <div class="cta">
+      <h1>Välkommen till Sundsvall universitet!</h1>
+      <p>
+        Har du precis gått ut gymnasiet? Har du jobbat i några år – eller kanske
+        många år? Oavsett var du är i livet har vi en utbildning för dig!
+      </p>
+      <div class="link-container">
+        <a
+          routerLink="/kurser"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+          >Alla kurser <img src="right-arrow-icon.svg" alt="Högerpil"
+        /></a>
+      </div>
+    </div>
+  </div>
+  <div class="stats-container">
+    <p>
+      <span class="number">4328</span>
+      <span class="description">Kurser</span>
+    </p>
+    <p>
+      <span class="number">64</span>
+      <span class="description">Ämnen</span>
+    </p>
+    <p>
+      <span class="number">1842</span>
+      <span class="description">Grundades</span>
+    </p>
+  </div>
+</main>
