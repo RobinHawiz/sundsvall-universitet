@@ -15,11 +15,13 @@ import {
   LocalStorageService,
   PaginatorIntlService,
 } from '@core/services';
-import { material } from '@core/material';
-import {
-  CourseSortSelectorComponent,
-  CourseSubjectSelectorComponent,
-} from '@core/components';
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { CourseSortSelectorComponent } from '@core/components/course-sort-selector/course-sort-selector.component';
+import { CourseSubjectSelectorComponent } from '@core/components/course-subject-selector/course-subject-selector.component';
 
 @Component({
   selector: 'app-kurser',
@@ -29,7 +31,11 @@ import {
     MatPaginatorModule,
     CourseSortSelectorComponent,
     CourseSubjectSelectorComponent,
-    ...material,
+    MatTableModule,
+    MatInputModule,
+    MatCardModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
   ],
   providers: [{ provide: MatPaginatorIntl, useClass: PaginatorIntlService }],
   templateUrl: './kurser.component.html',

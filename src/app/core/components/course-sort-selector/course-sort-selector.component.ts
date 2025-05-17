@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { material } from '@core/material';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Course, SortDirection, SortEvent } from '@core/models/course.model';
 
@@ -10,7 +12,12 @@ type CourseColumn = {
 
 @Component({
   selector: 'app-course-sort-selector',
-  imports: [ReactiveFormsModule, ...material],
+  imports: [
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatButtonModule,
+  ],
   templateUrl: './course-sort-selector.component.html',
   styleUrl: './course-sort-selector.component.scss',
 })

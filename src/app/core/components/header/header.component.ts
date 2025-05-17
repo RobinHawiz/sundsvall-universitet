@@ -1,12 +1,12 @@
 import { Component, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { material } from '@core/material';
+import { MatButtonModule } from '@angular/material/button';
 
 type Mode = 'dark' | 'light';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, ...material],
+  imports: [RouterLink, MatButtonModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })

@@ -2,11 +2,12 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, inject, signal } from '@angular/core';
 import { Course } from '@core/models/course.model';
 import { LocalStorageService } from '@core/services';
-import { material } from '@core/material';
+import { MatTableModule } from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-mitt-ramschema',
-  imports: [...material],
+  imports: [MatTableModule, MatCardModule],
   templateUrl: './mitt-ramschema.component.html',
   styleUrl: './mitt-ramschema.component.scss',
 })

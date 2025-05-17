@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { material } from '@core/material';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-course-subject-selector',
-  imports: [ReactiveFormsModule, ...material],
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatSelectModule],
   templateUrl: './course-subject-selector.component.html',
   styleUrl: './course-subject-selector.component.scss',
 })
