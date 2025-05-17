@@ -1,59 +1,60 @@
-# SundsvallUniversitet
+# Sundsvall universitet 🏫
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.8.
+> **Disclaimer**  
+> This website is a **fictional project created for educational purposes** as part of a university assignment.  
+> It is **not affiliated with or representative of any real university**, government-run or otherwise — including but not limited to any institution named "Sundsvall universitet."  
+> All content, branding, and data used herein are entirely simulated.
 
-## Development server
+A fictional university web app that displays available courses and allows users to create and manage their own course list.
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
-```
+### ✅ Basic Requirements
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- Built with [Angular](https://angular.dev/) v19.2.8 and TypeScript.
+- Contains at least two pages:
+  - One for searching/filtering course data.
+  - One for displaying the user's course list (ramschema).
+- Implements components and routing.
+- Includes two services:
+  - One for retrieving course data.
+  - One for managing the user-created course list.
+- Prevents duplicate courses from being added to the list.
+- The course list updates in real-time (no page reload) and persists via `localStorage`.
+- Responsive design using Angular Material — works well across screen sizes.
+- Source code is version-controlled with Git.
+- Deployed via Firebase 👉 [https://sundsvall-universitet.web.app](https://sundsvall-universitet.web.app)
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### 📚 Course Page Features
 
-```bash
-ng generate component component-name
-```
+- Displays course data clearly and accessibly.
+- Supports sorting by course code, name, points, and subject.
+- Allows filtering by course code or name.
+- Subject-based filtering — e.g., show only "Datateknik" courses.
+- Users can add courses to their custom course list.
+- Displays number of matching courses based on current filter.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+### 🗂 Ramschema Page Features
 
-## Building
+- Displays selected courses (stored in `localStorage`).
+- Shows total number of credits (högskolepoäng).
+- Allows removal of courses from the list.
 
-To build the project run:
+---
 
-```bash
-ng build
-```
+### 🚀 Additional Features
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Dark/light theme support based on system preferences.
+- Lazy-loaded routes for faster initial load.
+- Pagination on course list for better usability and performance.
+- Homepage with:
+  - Hero image
+  - Call-to-action (CTA) to navigate to course list
+  - Statistics about number of courses, subjects, and university founding year
+- Custom course list interface:
+  - Displays data in a table on desktop, and in a card-based layout on mobile for improved usability.
+  - Implemented custom sorting and filtering logic to work with the card layout, since Angular Material’s built-in table utilities (e.g., `@angular/material/sort`) only work with `mat-table`.
