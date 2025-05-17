@@ -28,26 +28,17 @@
       color: v.$cta-text-color;
     }
     .link-container {
-      display: inline-block;
       a {
-        position: relative;
-        padding-right: 2rem;
+        @include m.flex(center, space-between, row, 0.5rem);
+        display: inline-flex;
         color: v.$cta-text-color;
         &:hover {
           img {
-            transform: translate(30%, -50%);
+            transform: translateX(30%);
           }
-        }
-        @include m.media-query(mobile) {
-          padding-right: 1.5rem;
         }
       }
       img {
-        display: block;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        right: 0;
         width: 2rem;
         transition: all 0.1s ease;
         @include m.media-query(mobile) {
