@@ -4,10 +4,11 @@ import { Course } from '@core/models/course.model';
 import { LocalStorageService } from '@core/services';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-mitt-ramschema',
-  imports: [MatTableModule, MatCardModule],
+  imports: [MatTableModule, MatCardModule, MatButtonModule],
   templateUrl: './mitt-ramschema.component.html',
   styleUrl: './mitt-ramschema.component.scss',
 })
