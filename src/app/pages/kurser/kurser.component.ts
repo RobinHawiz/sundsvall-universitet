@@ -2,7 +2,6 @@ import { Component, computed, inject, signal, ViewChild } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { FormsModule } from '@angular/forms';
 import { Course, SortEvent } from '@core/models/course.model';
-import { alphabetize } from '@core/utils/sort.util';
 
 import {
   MatPaginator,
@@ -56,8 +55,10 @@ export class KurserComponent {
   pageEndIndex = computed(() => (this.pageIndex() + 1) * this.pageSize());
   /* End of paginator vars */
 
-  unmodifiedCourses: Array<Course> = [];
-  courses = signal<Array<Course> | undefined>(undefined);
+  unmodifiedCourses;
+  courses;
+  isLoading;
+  courseSubjects;
   filteredCourses = computed(() => {
     const courseList = this.courses();
     if (courseList !== undefined) {
@@ -83,29 +84,23 @@ export class KurserComponent {
     'syllabus',
     'add',
   ];
-  isLoading = signal(false);
   didFetchFail = computed(
     () => this.courses() === undefined && !this.isLoading()
   );
   searchTerm = signal('');
   isScreenWidth1110px = signal(false);
   breakPoint1110px = '(max-width: 1110px)';
-  courseSubjects: Array<string> = [];
 
   constructor(
     private courseService: CourseService,
     public localStorageService: LocalStorageService
   ) {
+    this.courses = this.courseService.courses;
+    this.unmodifiedCourses = this.courseService.unmodifiedCourses;
+    this.isLoading = this.courseService.isLoading;
+    this.courseSubjects = this.courseService.courseSubjects;
     this.localStorageService.loadFromLocalStorage();
-  }
-
-  private setCourseSubjects(data: Array<Course>): void {
-    this.courseSubjects.push('Alla');
-    data.forEach((course) => {
-      if (!this.courseSubjects.includes(course.subject)) {
-        this.courseSubjects.push(course.subject);
-      }
-    });
+    this.courseService.loadCourses();
   }
 
   private resetPageIndex(): void {
@@ -113,22 +108,6 @@ export class KurserComponent {
   }
 
   ngOnInit(): void {
-    this.isLoading.set(true);
-    this.courseService.getCourses().subscribe({
-      next: (data) => {
-        this.unmodifiedCourses = data;
-        this.courses.set(data);
-        this.setCourseSubjects(data);
-      },
-      error: (err) => {
-        console.error('Misslyckad hämtning av data: ', err);
-        this.isLoading.set(false);
-      },
-      complete: () => {
-        this.isLoading.set(false);
-      },
-    });
-
     this.breakpointObserver.observe(this.breakPoint1110px).subscribe((x) => {
       // Check if defined breakpoints match the screen size
       this.isScreenWidth1110px.set(x.breakpoints[this.breakPoint1110px]);
@@ -141,35 +120,12 @@ export class KurserComponent {
 
   filterBySubject(subject: string): void {
     this.resetPageIndex();
-    const unmodifiedCourses = this.unmodifiedCourses;
-    if (!this.courses()) return;
-
-    if (subject.toLocaleLowerCase() !== 'alla') {
-      this.courses.set(
-        unmodifiedCourses.filter((course) => course.subject === subject)
-      );
-    } else {
-      this.courses.set(unmodifiedCourses);
-    }
+    this.courseService.filterBySubject(subject);
   }
 
   alphabetizeBy(event: SortEvent): void {
     this.resetPageIndex();
-    const courses = this.courses();
-    if (!courses) return;
-
-    let sorted;
-    if (event.direction === 'ascending') {
-      sorted = [...courses].sort((a, b) =>
-        alphabetize(a[event.column], b[event.column])
-      );
-    } else {
-      sorted = [...courses].sort((b, a) =>
-        alphabetize(a[event.column], b[event.column])
-      );
-    }
-
-    this.courses.set(sorted);
+    this.courseService.alphabetizeBy(event);
   }
 
   handlePageEvent(e: PageEvent): void {

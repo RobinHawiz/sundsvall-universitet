@@ -12,7 +12,7 @@
       />
     </mat-form-field>
     <app-course-subject-selector
-      [subjects]="courseSubjects"
+      [subjects]="courseSubjects()"
       (filterBySubjectEvent)="filterBySubject($event)"
     />
   </div>
@@ -30,7 +30,7 @@
 } @else {
 <p class="user-message">
   Listar {{ filteredCourses().length }} kurser av totalt
-  {{ unmodifiedCourses.length }}
+  {{ unmodifiedCourses().length }}
 </p>
 @if(isScreenWidth1110px()) { @for (course of displayedCourses(); track
 course.courseCode) {
